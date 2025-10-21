@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Crear nodo</h2>
+
+<mat-dialog-content>
+  <form
+    #createNodeForm="ngForm"
+    (ngSubmit)="onSubmit(createNodeForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre del nodo -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre del nodo <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localNode.name"
+        required
+        placeholder="Ej. Nodo Principal"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="createNodeForm.submitted && !localNode.name">
+        El nombre del nodo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Ubicacion del nodo -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>ubicación</mat-label>
+      <textarea
+        matInput
+        id="location"
+        name="location"
+        [(ngModel)]="localNode.location"
+        placeholder="Indica la ubicación del nodo"
+        autocomplete="off"
+        rows="3"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        Crear nodo
+      </button>
+    </mat-dialog-actions>
+  </form></mat-dialog-content
+>

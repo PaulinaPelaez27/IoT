@@ -1,0 +1,251 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["organization", "auth", "iot", "alerts", "raw_data"]
+}
+
+enum Estado {
+  ACTIVO
+  INACTIVO
+  MANTENIMIENTO
+  ERROR
+
+  @@schema("iot")
+}
+
+// =========================================
+// ESQUEMA ORGANIZACIÓN : Empresas y Proyectos
+// =========================================
+
+model empresas {
+  e_id         BigInt   @id @default(autoincrement())
+  e_nombre     String     @db.VarChar(255)
+  e_direccion  String?
+  e_email      String?
+  e_numero_tel Int
+  e_responsable String?
+  e_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  e_modificado_en DateTime?
+  e_borrado_en DateTime?
+  
+  proyectos    proyectos[]
+  usuarios     usuarios[]
+
+  @@schema("organization")
+}
+
+model proyectos {
+  p_id          BigInt   @id @default(autoincrement())
+  p_nombre      String     @db.VarChar(255)
+  p_descripcion String?
+  p_empresa_id  BigInt?
+  p_creado_en   DateTime?  @default(now()) @db.Timestamp(6)
+  p_modificado_en DateTime?
+  p_borrado_en DateTime?
+  
+  nodos         nodos[]
+  empresas      empresas? @relation(fields: [p_empresa_id], references: [e_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("organization")
+}
+
+// =========================================
+// ESQUEMA AUTH : Usuarios y Roles
+// =========================================
+
+model roles_usuario {
+  ru_id          BigInt   @id @default(autoincrement())
+  ru_nombre      String  @db.VarChar(50)
+  ru_descripcion String?
+  ru_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  ru_modificado_en DateTime?
+  ru_borrado_en DateTime?
+  
+  usuarios       usuarios[]
+
+  @@schema("auth")
+}
+
+model usuarios {
+  u_id           BigInt   @id @default(autoincrement())
+  u_nombre       String      @db.VarChar(255)
+  u_email        String      @unique @db.VarChar(255)
+  u_contrasena   String      @db.VarChar(255)
+  u_rol_id       BigInt?
+  u_empresa_id   BigInt?
+  u_creado_en    DateTime?   @default(now()) @db.Timestamp(6)
+  u_modificado_en DateTime?
+  u_borrado_en DateTime?
+  
+  empresas       empresas?   @relation(fields: [u_empresa_id], references: [e_id], onDelete: NoAction, onUpdate: NoAction)
+  roles_usuario  roles_usuario? @relation(fields: [u_rol_id], references: [ru_id], onDelete: NoAction, onUpdate: NoAction)
+  alertas_usuarios alertas_usuarios[]
+
+  @@schema("auth")
+}
+
+// =========================================
+// ESQUEMA IOT : Nodos y Sensores
+// =========================================
+
+model nodos {
+  n_id         BigInt   @id @default(autoincrement())
+  n_nombre     String    @db.VarChar(255)
+  n_ubicacion  String?   @db.VarChar(255)
+  n_proyecto_id BigInt?
+  n_estado     Estado    @default(ACTIVO)  
+  n_creado_en  DateTime? @default(now()) @db.Timestamp(6)
+  n_modificado_en DateTime?
+  n_borrado_en DateTime?
+  
+  proyectos    proyectos? @relation(fields: [n_proyecto_id], references: [p_id], onDelete: SetNull, onUpdate: NoAction)
+  sensores     sensores[]
+  datos_crudos datos_crudos[]
+
+  @@schema("iot")
+}
+
+model sensores {
+  s_id              BigInt   @id @default(autoincrement())
+  s_nombre          String                 @unique @db.VarChar(255)
+  s_nodo_id         BigInt?
+  s_estado          Estado                 @default(ACTIVO)
+  s_creado_en       DateTime?              @default(now()) @db.Timestamp(6)
+  s_modificado_en DateTime?
+  s_borrado_en DateTime?
+  
+  alertas           alertas[]
+  lecturas_sensores lecturas_sensores[]
+  umbrales          umbrales[]
+  nodos             nodos?                 @relation(fields: [s_nodo_id], references: [n_id], onDelete: SetNull, onUpdate: NoAction)
+  tipos_soportados  tipos_sensor_soportados[]
+
+  @@schema("iot")
+}
+
+model tipos_lectura_sensor {
+  tls_id           BigInt   @id @default(autoincrement())
+  tls_nombre       String                   @db.VarChar(50)
+  tls_unidad       String                   @db.VarChar(20)
+  tls_descripcion  String?                  @db.VarChar(255)
+  tls_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  tls_modificado_en DateTime?
+  tls_borrado_en DateTime?
+  
+  lecturas         lecturas_sensores[]
+  umbrales         umbrales[]
+  soportado_por    tipos_sensor_soportados[]
+
+  @@unique([tls_nombre, tls_unidad])
+  @@schema("iot")
+}
+
+model lecturas_sensores {
+  ls_id           BigInt   @id @default(autoincrement())
+  ls_sensor_id    BigInt
+  ls_tipo_id      BigInt
+  ls_valor        Float
+  ls_fecha        DateTime              @default(now())
+  ls_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  ls_modificado_en DateTime?
+  ls_borrado_en DateTime?
+
+  sensores                sensores              @relation(fields: [ls_sensor_id], references: [s_id])
+  tipos_lectura_sensor    tipos_lectura_sensor  @relation(fields: [ls_tipo_id], references: [tls_id])
+
+  @@index([ls_sensor_id, ls_tipo_id, ls_fecha])
+  @@schema("iot")
+}
+
+model umbrales {
+  um_id        BigInt   @id @default(autoincrement())
+  um_sensor_id BigInt
+  um_tipo_id   BigInt
+  um_valor_min Float?
+  um_valor_max Float?
+  um_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  um_modificado_en DateTime?
+  um_borrado_en DateTime?
+
+  sensores              sensores?              @relation(fields: [um_sensor_id], references: [s_id], onDelete: NoAction, onUpdate: NoAction)
+  tipos_lectura_sensor  tipos_lectura_sensor   @relation(fields: [um_tipo_id], references: [tls_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("iot")
+}
+
+model tipos_sensor_soportados {
+  tss_sensor_id BigInt
+  tss_tipo_id   BigInt
+  tss_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  tss_modificado_en DateTime?
+  tss_borrado_en DateTime?
+
+  sensor        sensores              @relation(fields: [tss_sensor_id], references: [s_id], onDelete: Cascade)
+  tipo          tipos_lectura_sensor  @relation(fields: [tss_tipo_id], references: [tls_id], onDelete: Cascade)
+
+  @@id([tss_sensor_id, tss_tipo_id])
+  @@schema("iot")
+}
+
+// =========================================
+// ESQUEMA ALERTAS : Alertas y Notificaciones
+// =========================================
+
+model alertas {
+  a_id         BigInt   @id @default(autoincrement())
+  a_mensaje    String
+  a_nivel      String?   @db.VarChar(50)
+  a_sensor_id  BigInt?
+  a_creado_en  DateTime? @default(now()) @db.Timestamp(6)
+  a_modificado_en DateTime?
+  a_borrado_en DateTime?
+  
+  sensores     sensores?  @relation(fields: [a_sensor_id], references: [s_id], onDelete: NoAction, onUpdate: NoAction)
+  alertas_usuarios alertas_usuarios[]
+
+  @@schema("alerts")
+}
+
+model alertas_usuarios {
+  au_id        BigInt   @id @default(autoincrement())
+  au_alerta_id BigInt
+  au_usuario_id BigInt
+  au_creado_en  DateTime?  @default(now()) @db.Timestamp(6)
+  au_leido     Boolean  @default(false)
+  au_leido_en  DateTime?
+  au_modificado_en DateTime?
+  au_borrado_en DateTime?
+
+  alertas      alertas   @relation(fields: [au_alerta_id], references: [a_id], onDelete: Cascade)
+  usuarios     usuarios  @relation(fields: [au_usuario_id], references: [u_id], onDelete: Cascade)
+
+  @@unique([au_alerta_id, au_usuario_id])
+  @@schema("alerts")
+}
+
+// =========================================
+// ESQUEMA DATOS_CRUDOS : JSON recibido
+// =========================================
+
+model datos_crudos {
+  dc_id           BigInt   @id @default(autoincrement())
+  dc_nodo_id      BigInt?
+  dc_mensaje      Json
+  dc_recibido_en  DateTime @default(now()) @db.Timestamp(6)
+  dc_procesado    Boolean  @default(false)
+  dc_procesado_en DateTime?
+  dc_error_log    String?  @db.Text
+  dc_modificado_en DateTime?
+  dc_borrado_en DateTime?
+  
+  nodos           nodos?   @relation(fields: [dc_nodo_id], references: [n_id], onDelete: SetNull, onUpdate: NoAction)
+
+  @@index([dc_nodo_id, dc_recibido_en])
+  @@index([dc_procesado, dc_recibido_en])
+  @@schema("raw_data")
+}

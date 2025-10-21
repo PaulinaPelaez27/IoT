@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Crear proyecto</h2>
+
+<mat-dialog-content>
+  <form
+    #createProjectForm="ngForm"
+    (ngSubmit)="onSubmit(createProjectForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre del proyecto -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre del proyecto <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localProject.name"
+        required
+        placeholder="Ej. Nuevo Sistema"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="createProjectForm.submitted && !localProject.name"
+        >El nombre del proyecto es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Descripción del proyecto -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        id="description"
+        name="description"
+        [(ngModel)]="localProject.description"
+        placeholder="Describe el proyecto"
+        autocomplete="off"
+        rows="3"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Selección de empresa (opcional) -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Empresa</mat-label>
+      <mat-select
+        id="company"
+        name="company"
+        [(ngModel)]="localProject.companyId"
+      >
+        <mat-option [value]="null">Sin empresa</mat-option>
+        <mat-option *ngFor="let company of companies" [value]="company.id">
+          {{ company.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        aria-label="Cancelar"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!createProjectForm.form.valid"
+        aria-label="Crear proyecto"
+      >
+        Crear
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

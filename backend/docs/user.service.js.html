@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>user.service.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AlertService.html">AlertService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.createAlert">createAlert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.deleteAlert">deleteAlert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.getAlertById">getAlertById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.getAllAlerts">getAllAlerts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.updateAlert">updateAlert</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AuthService.html">AuthService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.checkPassword">checkPassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.hashPassword">hashPassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.login">login</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.register">register</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.verifyToken">verifyToken</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="CompanyService.html">CompanyService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.createCompany">createCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.deleteCompany">deleteCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.getAllCompanies">getAllCompanies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.getCompanyById">getCompanyById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.updateCompany">updateCompany</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NodeService.html">NodeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.createNode">createNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.deleteNode">deleteNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.getAllNodes">getAllNodes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.getNodeById">getNodeById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.updateNode">updateNode</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ProjectService.html">ProjectService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.createProject">createProject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.deleteProject">deleteProject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.getAllProjects">getAllProjects</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.updateProject">updateProject</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SensorService.html">SensorService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.attachSensorsToNode">attachSensorsToNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.createSensor">createSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.createSensorType">createSensorType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.deleteSensor">deleteSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.deleteSensorType">deleteSensorType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getAllSensorTypes">getAllSensorTypes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getAllSensors">getAllSensors</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getReadingsBySensorTypeId">getReadingsBySensorTypeId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getSensorById">getSensorById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.updateSensor">updateSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.updateSensorType">updateSensorType</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ThresholdService.html">ThresholdService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.createThreshold">createThreshold</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.deleteThreshold">deleteThreshold</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.getAllThresholds">getAllThresholds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.getThresholdById">getThresholdById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.updateThreshold">updateThreshold</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="UserService.html">UserService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.changePassword">changePassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.deleteUser">deleteUser</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getAllUsers">getAllUsers</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getUserByEmail">getUserByEmail</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getUserById">getUserById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.updateUser">updateUser</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#generateToken">generateToken</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#verifyToken">verifyToken</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">user.service.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { UserModel } = require("../models/user.model");
+const { RoleModel } = require("../models/role.model");
+const bcrypt = require("bcryptjs");
+const { CompanyModel } = require("../models/company.model");
+
+/** * Servicio para la gestión de usuarios.
+ *  Este servicio permite crear, obtener, actualizar y eliminar usuarios,
+ *  así como cambiar contraseñas y manejar roles y empresas asociadas.
+ */
+class UserService {
+  /**
+   * Obtiene todos los usuarios registrados.
+   *
+   * @returns {Promise&lt;Array&lt;Object>>} Lista de usuarios con sus roles y empresas.
+   * @throws {Error} Si ocurre un error al obtener los usuarios.
+   */
+  static async getAllUsers() {
+    try {
+      const users = await UserModel.getAllUsers();
+      return users.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.user_roles.name,
+        company: user.companies?.name || null,
+      }));
+    } catch (error) {
+      throw new Error(`Error fetching users: ${error.message}`);
+    }
+  }
+
+  /**
+   * Obtiene un usuario por su ID.
+   *
+   * @param {number|string} id - ID del usuario a buscar.
+   * @returns {Promise&lt;Object>} Usuario encontrado.
+   * @throws {Error} Si ocurre un error durante la búsqueda.
+   */
+  static async getUserById(id) {
+    try {
+      if (!id) {
+        throw new Error("User ID is required");
+      }
+      const user = await UserModel.getUserById(id);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return user;
+    } catch (error) {
+      throw new Error(`Error fetching user by ID: ${error.message}`);
+    }
+  }
+
+  /**
+   * Recupera un usuario por su correo electrónico.
+   * @param {string} email - Correo electrónico del usuario.
+   * @returns {Promise&lt;Object>} Usuario encontrado.
+   * @throws {Error} Si ocurre un error durante la búsqueda o si el usuario no existe.
+   */
+  static async getUserByEmail(email) {
+    try {
+      if (!email) {
+        throw new Error("Email is required");
+      }
+      const user = await UserModel.getUserByEmail(email);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return user;
+    } catch (error) {
+      throw new Error(`Error fetching user by email: ${error.message}`);
+    }
+  }
+
+  /**
+   * Actualiza un usuario existente con nuevos datos.
+   * @param {number|string} id - ID del usuario a actualizar.
+   * @param {Object} updates - Nuevos datos para el usuario.
+   * @returns {Promise&lt;Object>} Usuario actualizado.
+   * @throws {Error} Si ocurre un error durante la actualización o si los datos son inválidos.
+   */
+  static async updateUser(id, updates) {
+    try {
+      if (!id || !updates) {
+        throw new Error("User ID and updates are required");
+      }
+
+      const numericId = parseInt(id, 10);
+
+      if (numericId !== updates.id) {
+        throw new Error("User ID in updates does not match the provided ID");
+      }
+
+      // delete id from updates to avoid conflicts
+      updates.id = undefined;
+
+      // check role
+      if (updates.role) {
+        const role = await RoleModel.getRoleByName(updates.role);
+        if (!role) {
+          throw new Error("Invalid role specified");
+        }
+        updates.user_roles = { connect: { id: role.id } };
+        updates.role = undefined; // Remove role from updates to avoid conflicts
+      }
+
+      // check company
+      if (updates.company) {
+        const company = await CompanyModel.getCompanyByName(updates.company);
+        if (!company) {
+          throw new Error("Company not found");
+        }
+        updates.companies = { connect: { id: company.id } };
+        updates.company = undefined; // Remove company from updates to avoid conflicts
+      }
+
+      const user = await UserModel.updateUser(numericId, updates);
+      if (!user) {
+        throw new Error("User not found or update failed");
+      }
+      return user;
+    } catch (error) {
+      throw new Error(`Error updating user: ${error.message}`);
+    }
+  }
+
+  /**
+   * Elimina un usuario por su ID.
+   * @param {number|string} id - ID del usuario a eliminar.
+   * @returns {Promise&lt;Object>} Resultado de la eliminación.
+   * @throws {Error} Si el ID es inválido o si ocurre un error durante la eliminación.
+   */
+  static async deleteUser(id) {
+    try {
+      if (!id) {
+        throw new Error("User ID is required");
+      }
+
+      const numericId = parseInt(id, 10);
+      if (isNaN(numericId)) {
+        throw new Error("Invalid user ID");
+      }
+
+      const result = await UserModel.deleteUser(numericId);
+      if (!result) {
+        throw new Error("User not found or deletion failed");
+      }
+      return { message: "User deleted successfully" };
+    } catch (error) {
+      throw new Error(`Error deleting user: ${error.message}`);
+    }
+  }
+
+  /**
+   * Cambia la contraseña de un usuario.
+   * @param {number|string} id - ID del usuario.
+   * @param {string} currentPassword - Contraseña actual del usuario.
+   * @param {string} newPassword - Nueva contraseña para el usuario.
+   * @returns {Promise&lt;Object>} Mensaje de éxito y datos del usuario actualizado.
+   * @throws {Error} Si los datos son inválidos, si el usuario no existe,
+   *                 o si la contraseña actual no coincide.
+   */
+  static async changePassword(id, currentPassword, newPassword) {
+    try {
+      if (!id || !currentPassword || !newPassword) {
+        throw new Error(
+          "User ID, current password, and new password are required",
+        );
+      }
+      const user = await UserModel.getUserById(id);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+        throw new Error("Old password is incorrect");
+      }
+      const salt = await bcrypt.genSalt(10);
+      const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+      const updatedUser = await UserModel.updateUser(id, {
+        password: hashedNewPassword,
+      });
+
+      return {
+        message: "Password changed successfully",
+        user: {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          role: updatedUser.user_roles.name,
+        },
+      };
+    } catch (error) {
+      throw new Error(`Error changing password: ${error.message}`);
+    }
+  }
+}
+
+module.exports = { UserService };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 04:44:59 GMT-0500 (heure de l’Équateur) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

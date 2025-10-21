@@ -1,0 +1,110 @@
+<header class="presentation-banner">
+  <!-- logo -->
+  <img src="../logoNodalis.png" alt="Nodalis Logo" class="logo" />
+  <!-- alerts -->
+  <button
+    mat-icon-button
+    class="notification-button"
+    routerLink="/alerts"
+    matTooltip="Alertas"
+  >
+    <mat-icon>notifications</mat-icon>
+
+    <!-- Badge non lues -->
+    <span class="badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
+
+    <!-- Indicateur critique -->
+    <span class="critical-dot" *ngIf="hasCritical"></span>
+  </button>
+  <!-- user info -->
+  <div class="user-info" *ngIf="user$ | async as user">
+    <span class="user-name">{{ user.name }}</span>
+    <span class="user-role">{{
+      user.role === "admin" ? "Administrador" : "Usuario"
+    }}</span>
+    <!-- logout -->
+    <span
+      class="user-icon"
+      role="button"
+      tabindex="0"
+      (click)="logout()"
+      aria-label="Cerrar sesión"
+    >
+      <mat-icon>logout</mat-icon>
+    </span>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" *ngIf="user$ | async as user">
+    <div class="sidebar-title">Navegación</div>
+    <hr />
+    <nav class="nav-list">
+      <ng-container *ngIf="user$ | async as user">
+        <div
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/dashboard">Dashboard</a>
+        </div>
+        <div
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/info">Información del usuario</a>
+        </div>
+        <div
+          *ngIf="user.role === 'admin'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/users">Usuarios</a>
+        </div>
+        <div
+          *ngIf="user.role === 'admin'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/companies">Empresas</a>
+        </div>
+        <div
+          *ngIf="user.role === 'admin'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/nodes">Nodos</a>
+        </div>
+        <div
+          *ngIf="user.role === 'admin'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/projects">Proyectos</a>
+        </div>
+        <div
+          *ngIf="user.role === 'admin'"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/users/create">Crear usuario</a>
+        </div>
+      </ng-container>
+    </nav>
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <label class="switch-with-icons">
+        <mat-icon class="theme-icon">light_mode</mat-icon>
+        <input type="checkbox" (change)="toggleTheme()" [checked]="darkMode" />
+        <span class="slider"></span>
+        <mat-icon class="theme-icon">dark_mode</mat-icon>
+      </label>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <app-alert></app-alert>
+    <router-outlet></router-outlet>
+  </main>
+</div>

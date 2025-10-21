@@ -1,0 +1,63 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+mat-card {
+  width: 360px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease;
+}
+
+mat-card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.3);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  transition: transform 0.2s ease;
+}
+
+mat-form-field:focus-within {
+  transform: scale(1.05);
+}
+
+mat-card-title h2 {
+  margin: 20px 0;
+  font-weight: 700;
+  color: #0d47a1;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+button[mat-raised-button] {
+  background: #1976d2;
+  color: #fff;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[mat-raised-button]:hover {
+  background: #1565c0;
+  transform: translateY(-2px);
+}
+
+button[mat-raised-button]:active {
+  transform: scale(0.98);
+}

@@ -1,0 +1,58 @@
+<div
+  style="
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    margin-right: 16px;
+  "
+>
+  <button mat-raised-button color="primary" (click)="openCreateDialog()">
+    Crear proyecto
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-list>
+  <!-- headers -->
+  <mat-list-item class="header-row">
+    <div class="project-info-row header">
+      <span>Nombre</span>
+      <span>Descripcion</span>
+      <span>Empresa</span>
+      <span>Nodos</span>
+      <span class="actions-header">Acciones</span>
+    </div>
+  </mat-list-item>
+
+  <!-- Data -->
+  <mat-list-item *ngFor="let project of projects; trackBy: trackByProjectId">
+    <div class="project-info-row">
+      <span>{{ project.name }}</span>
+      <span>{{ project.description }}</span>
+      <span>{{ project.company?.name }}</span>
+      <span>
+        <ng-container
+          *ngIf="project.nodes && project.nodes.length > 0; else noNodes"
+        >
+          <span *ngFor="let node of project.nodes; let last = last">
+            {{ node.name }}<span *ngIf="!last">, </span>
+          </span>
+        </ng-container>
+        <ng-template #noNodes>Sin nodos</ng-template>
+      </span>
+      <span class="actions">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Edit project"
+          (click)="openUpdateDialog(project)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(project)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+  </mat-list-item>
+</mat-list>

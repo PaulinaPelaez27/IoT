@@ -1,0 +1,17 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.filter-container {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chart-tiempo-real {
+  width: 1200px;
+  height: auto;
+}

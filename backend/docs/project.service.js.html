@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>project.service.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AlertService.html">AlertService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.createAlert">createAlert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.deleteAlert">deleteAlert</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.getAlertById">getAlertById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.getAllAlerts">getAllAlerts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AlertService.html#.updateAlert">updateAlert</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AuthService.html">AuthService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.checkPassword">checkPassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.hashPassword">hashPassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.login">login</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.register">register</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthService.html#.verifyToken">verifyToken</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="CompanyService.html">CompanyService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.createCompany">createCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.deleteCompany">deleteCompany</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.getAllCompanies">getAllCompanies</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.getCompanyById">getCompanyById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="CompanyService.html#.updateCompany">updateCompany</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="NodeService.html">NodeService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.createNode">createNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.deleteNode">deleteNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.getAllNodes">getAllNodes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.getNodeById">getNodeById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="NodeService.html#.updateNode">updateNode</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ProjectService.html">ProjectService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.createProject">createProject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.deleteProject">deleteProject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.getAllProjects">getAllProjects</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ProjectService.html#.updateProject">updateProject</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SensorService.html">SensorService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.attachSensorsToNode">attachSensorsToNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.createSensor">createSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.createSensorType">createSensorType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.deleteSensor">deleteSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.deleteSensorType">deleteSensorType</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getAllSensorTypes">getAllSensorTypes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getAllSensors">getAllSensors</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getReadingsBySensorTypeId">getReadingsBySensorTypeId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.getSensorById">getSensorById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.updateSensor">updateSensor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SensorService.html#.updateSensorType">updateSensorType</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="ThresholdService.html">ThresholdService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.createThreshold">createThreshold</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.deleteThreshold">deleteThreshold</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.getAllThresholds">getAllThresholds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.getThresholdById">getThresholdById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="ThresholdService.html#.updateThreshold">updateThreshold</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="UserService.html">UserService</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.changePassword">changePassword</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.deleteUser">deleteUser</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getAllUsers">getAllUsers</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getUserByEmail">getUserByEmail</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.getUserById">getUserById</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="UserService.html#.updateUser">updateUser</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#generateToken">generateToken</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#verifyToken">verifyToken</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">project.service.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { ProjectModel } = require("../models/project.model");
+const {
+  projectSchema,
+  deleteProjectSchema,
+} = require("../validators/project.validator");
+
+/**
+ * @typedef {Object} NodeInput
+ * @property {number} id - ID del nodo.
+ * @property {string} [name] - Nombre del nodo.
+ */
+
+/**
+ * Servicio para la gestión de proyectos.
+ * Incluye creación, actualización, eliminación y obtención de proyectos,
+ * validando los datos y controlando las reglas de negocio.
+ */
+class ProjectService {
+  /**
+   * Crea un nuevo proyecto después de validar los datos y verificar que no exista uno con el mismo nombre.
+   *
+   * @param {string} name - Nombre del proyecto.
+   * @param {string} description - Descripción del proyecto.
+   * @param {number|string} companyId - ID de la empresa asociada.
+   * @param {NodeInput[]} [nodes=[]] - IDs de los nodos asociados al proyecto.
+   *
+   * @returns {Promise&lt;Project>} Proyecto creado exitosamente.
+   *
+   * @throws {Error} Si los datos son inválidos o el proyecto ya existe.
+   */
+  static async createProject(name, description, companyId, nodes = []) {
+    try {
+      const { value, error } = projectSchema.validate(
+        { name, description, companyId, nodes },
+        { convert: true },
+      );
+
+      if (error) throw new Error(`Datos inválidos: ${error.message}`);
+      // Check if the project already exists
+      const existingProject = await ProjectModel.getProjectByName(value.name);
+      if (existingProject) {
+        throw new Error(`El proyecto con el nombre ${value.name} ya existe`);
+      }
+      return await ProjectModel.createProject(
+        value.name,
+        value.description,
+        value.companyId,
+        value.nodes,
+      );
+    } catch (error) {
+      throw new Error(`Error al crear el proyecto: ${error.message}`);
+    }
+  }
+
+  /**
+   * Actualiza un proyecto existente con nuevos valores.
+   *
+   * @param {number} id - ID del proyecto a actualizar.
+   * @param {string} name - Nuevo nombre del proyecto.
+   * @param {string} description - Nueva descripción.
+   * @param {number|string} companyId - ID de la empresa asociada.
+   * @param {NodeInput[]} [nodes=[]] - IDs de los nodos a vincular.
+   *
+   * @returns {Promise&lt;Project>} Proyecto actualizado.
+   *
+   * @throws {Error} Si los datos son inválidos o ocurre un error en la base de datos.
+   */
+  static async updateProject(id, name, description, companyId, nodes = []) {
+    try {
+      const { value, error } = projectSchema.validate(
+        {
+          id,
+          name,
+          description,
+          companyId,
+          nodes,
+        },
+        { convert: true },
+      );
+
+      if (error) throw new Error(`Datos inválidos: ${error.message}`);
+
+      return await ProjectModel.updateProject(
+        value.id,
+        value.name,
+        value.description,
+        value.companyId,
+        value.nodes,
+      );
+    } catch (error) {
+      throw new Error(`Error al actualizar el proyecto: ${error.message}`);
+    }
+  }
+
+  /**
+   * Elimina un proyecto por su ID.
+   *
+   * @param {number} id - ID del proyecto a eliminar.
+   *
+   * @returns {Promise&lt;boolean>} `true` si se eliminó correctamente.
+   *
+   * @throws {Error} Si ocurre un error durante la eliminación.
+   */
+  static async deleteProject(id) {
+    try {
+      const { value, error } = deleteProjectSchema.validate(
+        { id },
+        { convert: true },
+      );
+
+      if (error) throw new Error(`Datos inválidos: ${error.message}`);
+      return await ProjectModel.deleteProject(value.id);
+    } catch (error) {
+      throw new Error(`Error al eliminar el proyecto: ${error.message}`);
+    }
+  }
+
+  /**
+   * Obtiene todos los proyectos existentes junto con sus empresas asociadas y nodos.
+   *
+   * @returns {Promise&lt;Array&lt;Object>>} Lista de proyectos en formato DTO,
+   * incluyendo la información básica de la empresa asociada.
+   *
+   * @throws {Error} Si ocurre un error al obtener los proyectos.
+   */
+  static async getAllProjects() {
+    try {
+      const projects = await ProjectModel.getAllProjects();
+      const projectsDto = projects.map((project) => ({
+        id: project.id,
+        name: project.name,
+        description: project.description,
+        companyId: project.company_id,
+        nodes: project.nodes,
+        company: project.companies
+          ? {
+              id: project.companies.id,
+              name: project.companies.name,
+            }
+          : null,
+      }));
+      return projectsDto;
+    } catch (error) {
+      throw new Error(`Error al obtener los proyectos: ${error.message}`);
+    }
+  }
+}
+
+module.exports = { ProjectService };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 04:44:59 GMT-0500 (heure de l’Équateur) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

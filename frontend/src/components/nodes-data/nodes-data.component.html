@@ -1,0 +1,112 @@
+<div class="add-button">
+  <button mat-raised-button color="primary" (click)="openCreateDialog()">
+    Crear nodo
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-list>
+  <!-- Headers -->
+  <mat-list-item class="header-row">
+    <div class="node-info-row header">
+      <span>Nombre</span>
+      <span>Ubicación</span>
+      <span>Estado</span>
+      <span>Proyecto</span>
+      <span
+        matTooltip="Para agregar sensores, hacerlo desde las acciones"
+        matTooltipPosition="above"
+        aria-label="Sensores: información"
+        class="project-header"
+      >
+        Sensores
+        <mat-icon class="info-icon" color="primary" aria-hidden="true"
+          >info</mat-icon
+        >
+      </span>
+      <span class="actions-header">Acciones</span>
+    </div>
+  </mat-list-item>
+
+  <!-- Data -->
+  <mat-list-item *ngFor="let node of nodes; trackBy: trackByNodeId">
+    <div class="node-info-row">
+      <!-- Nom -->
+      <span>{{ node.name }}</span>
+
+      <!-- Localisation -->
+      <span>
+        <ng-container *ngIf="hasLocation(node); else noLocation">
+          {{ node.location }}
+        </ng-container>
+        <ng-template #noLocation>
+          <span class="text-no-data">Sin ubicación</span>
+        </ng-template>
+      </span>
+
+      <!-- Statuts-->
+      <span class="status-cell">
+        <mat-icon [color]="getStatusColor(node.status)">
+          {{ getStatusIcon(node.status) }}
+        </mat-icon>
+        {{ node.status | titlecase }}
+      </span>
+
+      <!-- Project -->
+      <span>
+        <ng-container *ngIf="hasProject(node); else noProject">
+          {{ node.project.name }}
+        </ng-container>
+        <ng-template #noProject>
+          <span class="text-no-data">Sin proyecto</span>
+        </ng-template>
+      </span>
+      <!-- Lista sensores -->
+      <span>
+        <ng-container *ngIf="hasSensors(node); else noSensors">
+          <ul class="sensor-list">
+            <li *ngFor="let sensor of node.sensors">
+              <a [routerLink]="['/sensor', sensor.id]" class="sensor-link">
+                {{ sensor.name }}
+              </a>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noSensors>
+          <span class="text-no-data">Sin sensores</span>
+        </ng-template>
+      </span>
+
+      <!-- Actions -->
+      <span class="actions">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Agregar sensores"
+          matTooltip="Agregar sensores"
+          (click)="openAddSensorsDialog(node)"
+        >
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Editar nodo"
+          matTooltip="Editar nodo"
+          (click)="openUpdateDialog(node)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Eliminar nodo"
+          matTooltip="Eliminar nodo"
+          (click)="onDelete(node)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+  </mat-list-item>
+</mat-list>

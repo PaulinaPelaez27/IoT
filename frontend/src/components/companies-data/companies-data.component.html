@@ -1,0 +1,55 @@
+<!-- Place the "Crear empresa" button above the list for visibility -->
+<div
+  style="
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    margin-right: 16px;
+  "
+>
+  <button mat-raised-button color="primary" (click)="openCreateDialog()">
+    Crear empresa
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-list>
+  <!-- headers -->
+  <mat-list-item class="header-row">
+    <div class="company-info-row header">
+      <span>Nombre</span>
+      <span>Direccion</span>
+      <span>Proyectos</span>
+      <span class="actions-header">Actions</span>
+    </div>
+  </mat-list-item>
+
+  <!-- Data -->
+  <mat-list-item *ngFor="let company of companies; trackBy: trackByCompanyId">
+    <div class="company-info-row">
+      <span>{{ company.name }}</span>
+      <span>{{ company.address }}</span>
+      <span>
+        <ng-container *ngIf="company.projects?.length; else noProjects">
+          <span *ngFor="let project of company.projects; let last = last">
+            {{ project.name }}<span *ngIf="!last">, </span>
+          </span>
+        </ng-container>
+        <ng-template #noProjects>Sin proyectos</ng-template>
+      </span>
+      <span class="actions">
+        <button
+          mat-icon-button
+          color="primary"
+          aria-label="Edit company"
+          (click)="openUpdateDialog(company)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDelete(company)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+  </mat-list-item>
+</mat-list>

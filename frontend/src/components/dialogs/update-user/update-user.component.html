@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>Actualizar Usuario</h2>
+
+<mat-dialog-content>
+  <form
+    #updateUserForm="ngForm"
+    (ngSubmit)="onSubmit(updateUserForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre de usuario <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="username"
+        name="username"
+        type="text"
+        [(ngModel)]="localUser.name"
+        required
+        placeholder="Ej. juanperez"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="updateUserForm.submitted && !localUser.name"
+        >El nombre de usuario es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Correo electrónico <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="email"
+        name="email"
+        type="email"
+        [(ngModel)]="localUser.email"
+        required
+        placeholder="Ej. usuario@dominio.com"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="updateUserForm.submitted && !localUser.email"
+        >El correo electrónico es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Empresa -->
+    <mat-form-field
+      appearance="outline"
+      class="w-100 mb-3"
+      *ngIf="localUser.role === 'user'"
+    >
+      <mat-label>Empresa <span class="required"></span></mat-label>
+      <mat-select
+        id="company"
+        name="company"
+        [(ngModel)]="localUser.company"
+        required
+        placeholder="Seleccione una compañía"
+      >
+        <mat-option *ngFor="let company of companies" [value]="company.name">
+          {{ company.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          localUser.role === 'user' &&
+          updateUserForm.submitted &&
+          !localUser.company
+        "
+        >La compañía es obligatoria</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        aria-label="Cancelar edición"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!updateUserForm.form.valid"
+        aria-label="Actualizar usuario"
+      >
+        Actualizar
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,99 @@
+<div class="sensor-details" style="max-width: 500px; margin: 0 auto">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon style="vertical-align: middle; margin-right: 8px"
+          >sensors</mat-icon
+        >
+        <span style="vertical-align: middle">Detalles del sensor</span>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-list>
+        <!-- Nombre del sensor -->
+        <mat-list-item>
+          <mat-icon matListIcon color="primary">label</mat-icon>
+          <div matLine>
+            <strong>Nombre:</strong>
+            <span style="margin-left: 4px">{{
+              sensor?.name || "No disponible"
+            }}</span>
+          </div>
+        </mat-list-item>
+
+        <!-- Tipos asociados -->
+        <ng-container *ngIf="(sensor?.types?.length ?? 0) > 0; else noTypes">
+          <mat-divider></mat-divider>
+          <mat-list-item *ngFor="let type of sensor?.types">
+            <mat-icon matListIcon color="accent">category</mat-icon>
+            <div matLine>
+              <strong>Tipo:</strong>
+              <span style="margin-left: 4px">{{ type.name }}</span>
+            </div>
+            <div
+              matLine
+              class="secondary-line"
+              style="font-size: 0.95em; color: #666"
+            >
+              <strong>Unidad:</strong>
+              <span style="margin-right: 8px">{{ type.unit }}</span>
+              <strong>Descripción:</strong>
+              <span>{{ type.description || "No disponible" }}</span>
+            </div>
+          </mat-list-item>
+        </ng-container>
+        <ng-template #noTypes>
+          <mat-list-item>
+            <mat-icon matListIcon color="warn">info</mat-icon>
+            <div matLine>No hay tipos registrados.</div>
+          </mat-list-item>
+        </ng-template>
+
+        <mat-divider></mat-divider>
+
+        <!-- Nodo asociado -->
+        <mat-list-item>
+          <mat-icon matListIcon color="primary">device_hub</mat-icon>
+          <div matLine>
+            <strong>ID del nodo:</strong>
+            <span style="margin-left: 4px">{{
+              sensor?.node?.id || "No disponible"
+            }}</span>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item>
+          <mat-icon matListIcon color="primary">badge</mat-icon>
+          <div matLine>
+            <strong>Nombre del nodo:</strong>
+            <span style="margin-left: 4px">{{
+              sensor?.node?.name || "No disponible"
+            }}</span>
+          </div>
+        </mat-list-item>
+
+        <!-- Estado -->
+        <mat-list-item>
+          <mat-icon
+            matListIcon
+            [color]="sensor?.status === 'Activo' ? 'primary' : 'warn'"
+          >
+            {{ sensor?.status === "Activo" ? "toggle_on" : "toggle_off" }}
+          </mat-icon>
+          <div matLine>
+            <strong>Estado:</strong>
+            <span
+              [ngStyle]="{
+                color: sensor?.status === 'Activo' ? '#388e3c' : '#d32f2f',
+                'margin-left': '4px'
+              }"
+            >
+              {{ sensor?.status || "No disponible" }}
+            </span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

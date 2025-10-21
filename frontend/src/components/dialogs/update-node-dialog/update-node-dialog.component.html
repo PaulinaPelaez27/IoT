@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Actualizar nodo</h2>
+
+<mat-dialog-content>
+  <form
+    #updateNodeForm="ngForm"
+    (ngSubmit)="onSubmit(updateNodeForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre del nodo -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre del nodo <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localNode.name"
+        required
+        placeholder="Ej. Nodo Principal"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="updateNodeForm.submitted && !localNode.name">
+        El nombre del nodo es obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Ubicacion del nodo -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Ubicación</mat-label>
+      <textarea
+        matInput
+        id="location"
+        name="location"
+        [(ngModel)]="localNode.location"
+        placeholder="Indica la ubicación del nodo"
+        autocomplete="off"
+        rows="3"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- Proyecto - lista des proyectos -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Proyecto</mat-label>
+      <mat-select id="project" name="project" [(ngModel)]="localNode.projectId">
+        <mat-option *ngFor="let project of projects" [value]="project.id">
+          {{ project.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Status - update status to "ACTIVE" only if a project is selected -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Estado</mat-label>
+      <mat-select
+        id="status"
+        name="status"
+        [(ngModel)]="localNode.status"
+        [disabled]="!localNode.projectId"
+      >
+        <mat-option value="activo">Activo</mat-option>
+        <mat-option value="inactivo">Inactivo</mat-option>
+        <mat-option value="en Mantenimiento">Mantenimiento</mat-option>
+      </mat-select>
+      <mat-error *ngIf="updateNodeForm.submitted && !localNode.status">
+        El estado es obligatorio
+      </mat-error>
+      <mat-hint *ngIf="!localNode.projectId">
+        El estado solo se puede actualizar si se ha seleccionado un proyecto.
+      </mat-hint>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancelar
+      </button>
+      <button mat-raised-button color="primary" type="submit">
+        Actualizar nodo
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

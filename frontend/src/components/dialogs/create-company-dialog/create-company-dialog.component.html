@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Crear empresa</h2>
+
+<mat-dialog-content>
+  <form
+    #createCompanyForm="ngForm"
+    (ngSubmit)="onSubmit(createCompanyForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre empresa -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre de la empresa <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localCompany.name"
+        required
+        placeholder="Ej. juanperez"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="createCompanyForm.submitted && !localCompany.name"
+        >El nombre de empresa es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Direccion empresa -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Direccion <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="address"
+        name="address"
+        type="text"
+        [(ngModel)]="localCompany.address"
+        placeholder="Ej. Calle Falsa 123"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        aria-label="Cancelar edición"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!createCompanyForm.form.valid"
+        aria-label="Crear empresa"
+      >
+        Crear
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

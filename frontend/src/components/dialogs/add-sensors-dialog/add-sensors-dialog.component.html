@@ -1,0 +1,102 @@
+<h2 mat-dialog-title>Añadir sensores al nodo “{{ node.name }}”</h2>
+
+<mat-dialog-content class="dialog-body">
+  <!-- CHIPS DE SENSORES SELECCIONADOS -->
+  <mat-form-field appearance="outline" class="selectedSensors">
+    <mat-label>Sensores seleccionados</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Sensores seleccionados">
+      @for (sensor of selectedSensors(); track sensor.id) {
+      <mat-chip-row (removed)="removeSensor(sensor)">
+        {{ sensor.name }}
+        <button matChipRemove aria-label="Quitar sensor">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+      <input
+        matInput
+        placeholder="Buscar sensor…"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipGrid"
+      />
+    </mat-chip-grid>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selectSensor($event.option.value)"
+    >
+      <mat-option *ngFor="let s of filteredSensors()" [value]="s">
+        {{ s.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <!-- FORMULARIO CREACIÓN NUEVO SENSOR -->
+  <mat-expansion-panel
+    class="sensor-form-panel"
+    [expanded]="showNewSensorForm()"
+  >
+    <mat-expansion-panel-header (click)="toggleNewSensorForm()">
+      <mat-panel-title>Crear nuevo sensor</mat-panel-title>
+      <mat-panel-description>
+        Completa los datos y pulsa “Guardar”
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div [formGroup]="newSensorForm" class="sensor-form">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Tipo de lectura</mat-label>
+        <mat-select
+          formControlName="typeIds"
+          multiple
+          [compareWith]="compareFn"
+          (selectionChange)="onSensorTypeChange($event.value)"
+        >
+          <mat-option *ngFor="let t of sensorTypes" [value]="t.id">
+            {{ t.name }} ({{ t.unit }})
+          </mat-option>
+          <mat-divider></mat-divider>
+          <mat-option [value]="-1" class="no-checkbox-option" disableRipple>
+            <span style="display: flex; align-items: center">
+              <mat-icon style="margin-right: 8px">add</mat-icon>
+              Añadir nuevo tipo de lectura
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="new-sensor-actions">
+        <button
+          mat-stroked-button
+          color="warn"
+          type="button"
+          (click)="cancelNewSensor()"
+        >
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addNewSensorDraft()"
+          [disabled]="newSensorForm.invalid"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-dialog-content>
+
+<!-- ACTIONS -->
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="warn" (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirm()">
+    Confirmar
+  </button>
+</mat-dialog-actions>

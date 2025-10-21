@@ -1,0 +1,82 @@
+.add-sensors-dialog {
+  padding: 18px;
+  min-width: 450px;
+  min-height: 400px;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.selectedSensors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.selected-sensor {
+  background-color: var(--primary-color-light);
+  color: #006064;
+  border-radius: 16px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.required {
+  color: red;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+mat-dialog-actions button + button {
+  margin-left: 12px;
+}
+
+@media (max-width: 500px) {
+  .add-sensors-dialog {
+    min-width: 100%;
+    padding: 12px;
+  }
+
+  mat-dialog-actions button {
+    width: 100%;
+    margin: 4px 0;
+  }
+}
+
+.sensor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sensor-form-panel {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 2px solid var(--background-color);
+  border-radius: 8px;
+}
+
+.new-sensor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+mat-chip {
+  margin: 4px 4px 0 0;
+}
+
+::ng-deep .no-checkbox-option .mat-pseudo-checkbox {
+  display: none !important;
+}

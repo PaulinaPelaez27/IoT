@@ -1,0 +1,40 @@
+.user-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 120px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+.user-info-row span {
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-info-row .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-row {
+  background-color: var(--md-sys-color-background);
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+.header span {
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant, #666);
+}
+
+.actions-header {
+  text-align: right;
+  padding-right: 0;
+  display: block;
+}

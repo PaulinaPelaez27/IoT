@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Actualizar empresa</h2>
+
+<mat-dialog-content>
+  <form
+    #updateCompanyForm="ngForm"
+    (ngSubmit)="onSubmit(updateCompanyForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre de empresa <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localCompany.name"
+        required
+        placeholder="Ej. juanperez"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="updateCompanyForm.submitted && !localCompany.name"
+        >El nombre de empresa es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- Direccion -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Direccion <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="address"
+        name="address"
+        type="text"
+        [(ngModel)]="localCompany.address"
+        placeholder="Ej. Calle Falsa 123"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        aria-label="Cancelar edición"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!updateCompanyForm.form.valid"
+        aria-label="Actualizar empresa"
+      >
+        Actualizar
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

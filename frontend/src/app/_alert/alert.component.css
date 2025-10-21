@@ -1,0 +1,60 @@
+.alert-container {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+mat-card {
+  padding: 16px;
+  border-left: 5px solid transparent;
+  border-radius: 8px;
+  position: relative;
+}
+
+.alert-success mat-card {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+.alert-danger mat-card {
+  border-color: #f44336;
+  background-color: #ffebee;
+  color: #b71c1c;
+}
+
+.alert-warning mat-card {
+  border-color: #ff9800;
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.alert-info mat-card {
+  border-color: #2196f3;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.close-button:hover,
+.close-button:focus {
+  background: #f0f0f0;
+  color: #d32f2f;
+  outline: none;
+}
+
+.alert-message {
+  font-size: 14px;
+  line-height: 1.5;
+}

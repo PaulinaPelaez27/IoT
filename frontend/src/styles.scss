@@ -1,0 +1,343 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// === Fountain Blue Palette ===
+$fountain-blue-palette: (
+  50: #f0fbfa,
+  100: #d8f4f5,
+  200: #b6e9eb,
+  300: #84d9dc,
+  400: #4abfc6,
+  500: #33b2bb,
+  600: #2a8490,
+  700: #286b76,
+  800: #285962,
+  900: #254b54,
+  A100: #d8f4f5,
+  A200: #84d9dc,
+  A400: #4abfc6,
+  A700: #2a8490,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #000,
+    A200: #000,
+    A400: #000,
+    A700: #fff,
+  ),
+);
+
+$custom-primary: mat.m2-define-palette($fountain-blue-palette, 500, 100, 700);
+$custom-primary-light: mat.m2-define-palette(
+  $fountain-blue-palette,
+  200,
+  100,
+  700
+);
+$custom-primary-contrast: mat.m2-define-palette(
+  $fountain-blue-palette,
+  900,
+  100,
+  700
+);
+$custom-secondary: mat.m2-define-palette($fountain-blue-palette, 300, 100, 700);
+$custom-accent: mat.m2-define-palette($fountain-blue-palette, 400, 100, 700);
+$custom-warn: mat.m2-define-palette($fountain-blue-palette, 600, 100, 700);
+
+$custom-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      primary-light: $custom-primary-light,
+      primary-contrast: $custom-primary-contrast,
+      secondary: $custom-secondary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+    typography: mat.m2-define-typography-config(),
+    density: 0,
+  )
+);
+
+// Aplica el tema globalmente
+@include mat.all-component-themes($custom-theme);
+
+// === Fountain Blue Dark Palette ===
+$fountain-blue-dark-palette: (
+  50: #121212,
+  100: #1e1e1e,
+  200: #232f34,
+  300: #2c3e45,
+  400: #375359,
+  500: #3f6c70,
+  600: #479296,
+  700: #4abfc6,
+  800: #66d6db,
+  900: #84f1f4,
+  A100: #66d6db,
+  A200: #4abfc6,
+  A400: #3f6c70,
+  A700: #375359,
+  contrast: (
+    50: #fff,
+    100: #fff,
+    200: #fff,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #000,
+    700: #000,
+    800: #000,
+    900: #000,
+    A100: #000,
+    A200: #000,
+    A400: #fff,
+    A700: #fff,
+  ),
+);
+
+$dark-primary: mat.m2-define-palette(
+  $fountain-blue-dark-palette,
+  500,
+  100,
+  700
+);
+$dark-primary-light: mat.m2-define-palette(
+  $fountain-blue-dark-palette,
+  200,
+  100,
+  700
+);
+$dark-primary-contrast: mat.m2-define-palette(
+  $fountain-blue-dark-palette,
+  900,
+  100,
+  700
+);
+$dark-accent: mat.m2-define-palette($fountain-blue-dark-palette, 300, 100, 700);
+$dark-warn: mat.m2-define-palette($fountain-blue-dark-palette, 600, 100, 700);
+
+$custom-dark-theme: mat.m2-define-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+      warn: $dark-warn,
+    ),
+    typography: mat.m2-define-typography-config(),
+    density: 0,
+  )
+);
+
+:root {
+  --primary-color: #{mat.m2-get-color-from-palette($custom-primary)};
+  --primary-color-light: #{mat.m2-get-color-from-palette($custom-primary, 100)};
+  --primary-color-dark: #{mat.m2-get-color-from-palette($custom-primary, 700)};
+  --accent-color: #{mat.m2-get-color-from-palette($custom-accent)};
+  --warn-color: #{mat.m2-get-color-from-palette($custom-warn)};
+  --background-color: #{mat.m2-get-color-from-palette($custom-primary, 50)};
+  --surface-color: #ffffff;
+  --text-color: #1a1a1a;
+  --hover-color: #{mat.m2-get-color-from-palette($custom-primary-contrast, 600)};
+  --hover-background-color: #{mat.m2-get-color-from-palette(
+      $custom-primary,
+      600,
+      60%
+    )};
+  --selected-color: #{mat.m2-get-color-from-palette(
+      $custom-primary-contrast,
+      600
+    )};
+  --selected-background-color: #{mat.m2-get-color-from-palette(
+      $custom-primary,
+      600
+    )};
+  --banner-background: #{mat.m2-get-color-from-palette($custom-primary, 500)};
+  --banner-text-color: #{mat.m2-get-color-from-palette(
+      $custom-primary-contrast,
+      50
+    )};
+  --navbar-background: #{mat.m2-get-color-from-palette($custom-primary, A200)};
+}
+
+.text-no-data {
+  color: #888;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav-container {
+  height: 100vh;
+}
+
+.presentation-banner {
+  color: var(--text-color);
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2em;
+  height: 15vh;
+}
+
+body {
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.main-card {
+  margin: 24px;
+}
+
+.mat-toolbar {
+  padding: 0 24px;
+  font-weight: 500;
+  background-color: var(--primary-color);
+  color: #fff;
+  height: 64px;
+}
+
+.mat-card {
+  margin: 16px;
+  background: #285962;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.mat-button,
+.mat-raised-button {
+  border-radius: 8px;
+  text-transform: none;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-dialog-container {
+  border-radius: 12px;
+}
+
+.alert {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+
+  &.fade {
+    opacity: 0;
+  }
+}
+
+mat-list {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-list-item {
+  padding: 0;
+  border-bottom: 1px solid #eee;
+}
+
+mat-list-item:last-child {
+  border-bottom: none;
+}
+
+.add-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  margin-right: 16px;
+}
+
+@mixin flexible-mat-list-items {
+  .mat-mdc-list-item,
+  .mat-mdc-list-option {
+    min-height: unset !important;
+    height: auto !important;
+
+    align-items: flex-start !important;
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    .mdc-list-item__content {
+      height: auto !important;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  .mat-list-item,
+  .mat-list-option {
+    min-height: unset !important;
+    height: auto !important;
+    align-items: flex-start !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    .mat-list-item-content {
+      height: auto !important;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+}
+
+@include flexible-mat-list-items();
+
+.dark-theme {
+  @include mat.all-component-colors($custom-dark-theme);
+
+  & {
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-color: #f5f5f5;
+
+    --primary-color: #{mat.m2-get-color-from-palette($dark-primary)};
+    --primary-color-light: #{mat.m2-get-color-from-palette($dark-primary, 100)};
+    --primary-color-dark: #{mat.m2-get-color-from-palette($dark-primary, 700)};
+
+    --accent-color: #{mat.m2-get-color-from-palette($dark-accent)};
+    --warn-color: #{mat.m2-get-color-from-palette($dark-warn)};
+
+    --hover-color: #4abfc6;
+    --hover-background-color: #{mat.m2-get-color-from-palette(
+        $dark-primary,
+        700
+      )};
+    --selected-color: #fff;
+    --selected-background-color: #{mat.m2-get-color-from-palette(
+        $dark-primary,
+        600
+      )};
+
+    --banner-background: #{mat.m2-get-color-from-palette($dark-primary, 400)};
+    --banner-text-color: #{mat.m2-get-color-from-palette(
+        $dark-primary-contrast,
+        100
+      )};
+    --navbar-background: #1e1e1e;
+  }
+}

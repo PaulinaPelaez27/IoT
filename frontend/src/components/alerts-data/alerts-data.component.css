@@ -1,0 +1,14 @@
+.alert-card {
+  margin-bottom: 1rem;
+}
+.alert-card.critical {
+  border-left: 6px solid red;
+}
+.alert-card.warning {
+  border-left: 6px solid orange;
+}
+.badge-unread {
+  color: red;
+  font-weight: bold;
+  margin-left: 1rem;
+}

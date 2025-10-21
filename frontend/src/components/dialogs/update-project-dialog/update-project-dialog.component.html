@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Actualizar proyecto</h2>
+
+<mat-dialog-content>
+  <form
+    #updateProjectForm="ngForm"
+    (ngSubmit)="onSubmit(updateProjectForm)"
+    autocomplete="off"
+  >
+    <!-- Nombre -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nombre <span class="required"></span></mat-label>
+      <input
+        matInput
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="localProject.name"
+        required
+        placeholder="Ej. juanperez"
+        autocomplete="off"
+      />
+      <mat-error *ngIf="updateProjectForm.submitted && !localProject.name"
+        >El nombre de proyecto es obligatorio</mat-error
+      >
+    </mat-form-field>
+
+    <!-- description -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Descripcion <span></span></mat-label>
+      <input
+        matInput
+        id="description"
+        name="description"
+        type="text"
+        [(ngModel)]="localProject.description"
+        placeholder="Ej. Proyecto de prueba"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <!-- Company -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Compañia</mat-label>
+      <mat-select
+        id="company"
+        name="company"
+        [(ngModel)]="localProject.companyId"
+      >
+        <mat-option
+          *ngFor="let company of companies; trackBy: trackByCompanyId"
+          [value]="company.id"
+        >
+          {{ company.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-dialog-actions align="end">
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        aria-label="Cancelar edición"
+      >
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!updateProjectForm.form.valid"
+        aria-label="Actualizar proyecto"
+      >
+        Actualizar
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

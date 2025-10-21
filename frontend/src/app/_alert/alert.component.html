@@ -1,0 +1,19 @@
+﻿<div
+  *ngFor="let alert of alerts"
+  [ngClass]="cssClass(alert)"
+  class="mat-elevation-z2"
+>
+  <mat-card>
+    <mat-card-content>
+      <div [innerHTML]="alert.message"></div>
+    </mat-card-content>
+    <button
+      mat-icon-button
+      class="close-button"
+      color="warn"
+      (click)="removeAlert(alert)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card>
+</div>

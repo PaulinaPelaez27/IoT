@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Añadir nuevo tipo de sensor</h2>
+
+<mat-dialog-content class="dialog-body">
+  <!-- Nombre del nuevo tipo de sensor -->
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Nombre del nuevo tipo de sensor</mat-label>
+    <input matInput [(ngModel)]="name" name="name" required />
+  </mat-form-field>
+  <!-- Selección de unidades del nuevo tipo de sensor -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Unidad</mat-label>
+    <input
+      matInput
+      [(ngModel)]="unit"
+      name="unit"
+      placeholder="Ej. °C, m/s, etc."
+      required
+    />
+  </mat-form-field>
+  <!-- Descripción del nuevo tipo de sensor -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Descripción (opcional)</mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="description"
+      name="description"
+      rows="3"
+    ></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button color="warn" (click)="onCancel()">Cancelar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="confirm()"
+    [disabled]="!name || !unit"
+  >
+    Confirmar
+  </button>
+</mat-dialog-actions>

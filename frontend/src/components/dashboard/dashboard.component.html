@@ -1,0 +1,56 @@
+<div class="dashboard-container">
+  <div class="filter-container">
+    <mat-form-field appearance="outline" style="flex: 1">
+      <mat-label>Seleccionar proyecto</mat-label>
+      <mat-select
+        [(value)]="selectedProjectId"
+        (selectionChange)="fetchNodesByProjectId()"
+      >
+        <mat-option *ngFor="let project of projectsList" [value]="project.id">
+          {{ project.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="flex: 1">
+      <mat-label>Seleccionar nodo</mat-label>
+      <mat-select
+        [(value)]="selectedNodeId"
+        (selectionChange)="fetchSensorsByNodeId()"
+      >
+        <mat-option *ngFor="let node of nodesList" [value]="node.id">
+          {{ node.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="flex: 1">
+      <mat-label>Seleccionar sensor</mat-label>
+      <mat-select
+        [(value)]="selectedSensorId"
+        (selectionChange)="fetchSensorTypesBySensorId()"
+      >
+        <mat-option *ngFor="let sensor of sensorsList" [value]="sensor.id">
+          {{ sensor.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="flex: 1">
+      <mat-label>Seleccionar tipo de sensor</mat-label>
+      <mat-select [(value)]="selectedTypeId" (selectionChange)="subReadings()">
+        <mat-option *ngFor="let type of typesList" [value]="type.id">
+          {{ type.name }} ({{ type.unit }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-card class="chart-tiempo-real">
+    <h2>Lecturas en tiempo real</h2>
+    <canvas
+      baseChart
+      [data]="lineChartData"
+      [type]="lineChartType"
+      [options]="lineChartOptions"
+    >
+    </canvas>
+  </mat-card>
+</div>

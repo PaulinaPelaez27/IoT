@@ -1,0 +1,74 @@
+<div class="user-create-container" style="max-width: 400px; margin: auto">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Crear Usuario</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="createUser()" #userForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre de usuario</mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.name"
+            name="name"
+            type="text"
+            required
+            autocomplete="name"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            [(ngModel)]="user.password"
+            name="password"
+            type="password"
+            required
+            autocomplete="new-password"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rol</mat-label>
+          <mat-select [(ngModel)]="user.role" name="role" required>
+            <mat-option value="">Seleccione un rol</mat-option>
+            <mat-option value="admin">Administrador</mat-option>
+            <mat-option value="user">Usuario</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          class="full-width"
+          *ngIf="user.role === 'user'"
+        >
+          <mat-label>Compañía</mat-label>
+          <mat-select [(ngModel)]="user.company" name="company" required>
+            <mat-option *ngFor="let company of companies" [value]="company.id">
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          class="full-width"
+          type="submit"
+        >
+          Crear Usuario
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

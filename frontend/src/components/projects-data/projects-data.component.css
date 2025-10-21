@@ -1,0 +1,26 @@
+.project-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 120px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.project-info-row .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header span {
+  font-weight: 600;
+}
+
+.actions-header {
+  text-align: right;
+  padding-right: 0;
+  display: block;
+}
